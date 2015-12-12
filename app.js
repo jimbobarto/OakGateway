@@ -10,9 +10,30 @@ var routes = require('./routes/index');
 var message = require('./routes/message');
 
 var publisher = require('./controllers/publish.js');
-publisher.start();
+var authController = require('./controllers/auth.js');
+
+var nconf = require('nconf');
+
+// First consider commandline arguments and environment variables, respectively.
+nconf.argv().env();
+
+// Then load configuration from a designated file.
+//nconf.file({ file: 'config.json' });
+
+// Provide default values for settings not provided above.
+/*
+nconf.defaults({
+    'http': {
+        'port': 1337
+    }
+});
+*/
 
 var app = express();
+
+app.use(authController);
+
+publisher.start();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -28,6 +49,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/message', message);
+
+
+//app.use(auth(req));
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,5 +1,9 @@
 var express = require('express');
+var authController = require('../controllers/auth.js');
+
 var router = express.Router();
+
+router.use(authController);
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
