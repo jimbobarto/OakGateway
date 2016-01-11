@@ -17,6 +17,7 @@ exports.sendRequest = function(queue, message) {
     if(connReady) {
         var ex = '';
 
+        ch.assertQueue(queue, {durable: false});
         ch.publish(ex, queue, new Buffer(message));
         console.log(" [x] Sent %s: '%s'", queue, message);
     }

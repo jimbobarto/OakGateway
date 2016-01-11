@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
     var publisher = require('../controllers/publish.js');
-    publisher.sendRequest("SimpleQueue", "james likes pie");
+    publisher.sendRequest("SimpleQueue", JSON.stringify(req.body));
     res.send("Res: I've posted a message - " + JSON.stringify(req.body));
 });
 
