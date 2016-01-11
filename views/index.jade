@@ -3,3 +3,5 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  <input name="report" type="button" value="Get Latest Report" onclick="$.get('/consume');"/>
+  <div id="displayResults"></div>

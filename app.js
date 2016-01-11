@@ -8,11 +8,14 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var message = require('./routes/message');
+var consume = require('./routes/consume');
 
 var publisher = require('./controllers/publish.js');
 var authController = require('./controllers/auth.js');
 
 var nconf = require('nconf');
+
+var $ = require('jquery');
 
 // First consider commandline arguments and environment variables, respectively.
 nconf.argv().env();
@@ -49,6 +52,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/message', message);
+app.use('/consume', consume);
+
+app.get('/jquery/jquery.js', function(req, res) {
+    res.sendfile(__dirname + '/node_modules/jquery/dist/jquery.min.js');
+});
 
 
 //app.use(auth(req));

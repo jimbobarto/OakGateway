@@ -23,3 +23,10 @@ exports.sendRequest = function(queue, message) {
     }
 };
 
+exports.consumeMessage = function(queue) {
+    ch.consume(queue, function (msg) {
+        console.log(" [x] Received %s", msg.content.toString());
+        return msg.content.toString();
+    }, {noAck: true});
+};
+
