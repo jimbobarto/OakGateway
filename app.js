@@ -10,8 +10,8 @@ var routes = require('./routes/index');
 var message = require('./routes/message');
 var consume = require('./routes/consume');
 
-var publisher = require('./controllers/publish.js');
-var authController = require('./controllers/auth.js');
+var publisher = require('./libs/publish.js');
+var authController = require('./libs/auth.js');
 
 var nconf = require('nconf');
 

@@ -1,5 +1,5 @@
 var express = require('express');
-var authController = require('../controllers/auth.js');
+var authController = require('../libs/auth.js');
 
 var router = express.Router();
 
@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-    var publisher = require('../controllers/publish.js');
+    var publisher = require('../libs/publish.js');
     publisher.sendRequest("SimpleQueue", JSON.stringify(req.body));
     res.send("Res: I've posted a message - " + JSON.stringify(req.body));
 });

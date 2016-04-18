@@ -4,10 +4,11 @@ var router = express.Router();
 
 router.get('/', function(req, res, next) {
     console.log("In consume");
-    var publisher = require('../controllers/publish.js');
-    var report = publisher.consumeMessage("Results");
+    var publisher = require('../libs/publish.js');
+    var report;
+    publisher.consumeMessage("Results", report);
+
     console.log("Report: " + report);
-    res.send("Res: I've consumed a message - " + report);
 });
 
 module.exports = router;
